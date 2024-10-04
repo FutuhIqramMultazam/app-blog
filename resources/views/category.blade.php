@@ -10,7 +10,8 @@
 
             @foreach ($category->posts as $c)
             <article>
-            <h2>Judul : <a href="/post/{{ $c->slug }}">{{ $c->title }}</a></h2>
+            <h2 class="pb-3 "><a class="text-decoration-none" href="/post/{{ $c->slug }}">{{ $c->title }}</a></h2>
+            <h6>By : <a href="" class="text-decoration-none">{{ $c->user->name }}</a> | Category : <a class="text-decoration-none" href="/categories/{{ $c->category->slug }}">{{ $c->category->name }}</a></h6>
             <p>{{ $c->excerpt }}</p>
             <a href="/post/{{ $c->slug }}">Read More....</a>
             </article>
