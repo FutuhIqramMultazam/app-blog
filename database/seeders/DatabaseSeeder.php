@@ -17,9 +17,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::factory(3)->create();
+        Post::factory(10)->create();
 
-        User::create([
+        /* User::create([
             'name' => "Futuh Iqram Multazam",
             'email' => "Futuhiqram@gmail.com",
             'password' => bcrypt('icamganteng'),
@@ -28,7 +29,7 @@ class DatabaseSeeder extends Seeder
             'name' => "Fadilah Fatwa",
             'email' => "fadilah@gmail.com",
             'password' => bcrypt('fadilahcantik'),
-        ]);
+        ]); */
 
         Category::create([
             'name' => 'Programming',
@@ -43,7 +44,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'religius'
         ]);
 
-        Post::create([
+        /*Post::create([
             'category_id' => '1',
             'user_id' => '1',
             'title' => 'Judul Pertama',
@@ -75,6 +76,6 @@ class DatabaseSeeder extends Seeder
             'slug' => 'judul-ke-empat',
             'excerpt' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias dolor quisquam quod debitis....',
             'body' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias dolor quisquam quod debitis, similique doloremque exercitationem quam sequi in possimus, eos facere temporibus hic quidem esse fugiat nihil, consectetur tenetur dignissimos nobis! Repellendus dignissimos facere quidem nihil omnis? Obcaecati consequuntur libero id deserunt ipsam quis iusto, possimus velit blanditiis tempora explicabo saepe eveniet dolorem dicta. Voluptate, minima animi repudiandae tempora corrupti sunt eveniet non vel, aperiam cumque consequuntur ea. Minus!',
-        ]);
+        ]); */
     }
 }

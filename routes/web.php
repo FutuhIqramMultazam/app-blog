@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostsController;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,4 +41,10 @@ Route::get('/categories', function () {
 });
 Route::get('/categories/{category:slug}', function (Category $category) {
     return view('category', compact('category'));
+});
+
+
+// users
+Route::get('/authors/{user:username}', function (User $user) {
+    return view('authors', compact('user'));
 });
