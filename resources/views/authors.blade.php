@@ -8,7 +8,7 @@
     <div class="row mt-5">
         <div class="col">
 
-            @foreach ($user->posts as $c)
+            @foreach ($user->posts->load('category','user') as $c)
             <article>
             <h2 class="pb-3 "><a class="text-decoration-none" href="/post/{{ $c->slug }}">{{ $c->title }}</a></h2>
             <h6>By : <a href="" class="text-decoration-none">{{ $c->user->name }}</a> | Category : <a class="text-decoration-none" href="/categories/{{ $c->category->slug }}">{{ $c->category->name }}</a></h6>
