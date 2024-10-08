@@ -4,16 +4,59 @@
     
 @section('content')
 <div class="container mt-5">
+        <h1 class="text-center">All Posts</h1>
+
+        <form action="/posts" method="get">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                        <input type="text" name="search" class="form-control" placeholder="Search...">
+                        <button class="btn btn-danger" type="button" id="button-addon2">Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
     <div class="row mt-5">
         <div class="col">
 
-            @foreach ($post as $p)
-            <h2><a href="/post/{{ $p->slug }}" class="text-decoration-none">{{ $p->title }}</a></h2>
-            <h6>By : <a href="/authors/{{ $p->user->username }}" class="text-decoration-none">{{ $p->user->name }}</a> | Category : <a class="text-decoration-none" href="/categories/{{ $p->category->slug }}">{{ $p->category->name }}</a></h6>
-            <p>{{ $p->excerpt }}</p>
-            <a href="/post/{{ $p->slug }}" class="text-decoration-none">Read More....</a>
-            <hr class="mb-5">
-            @endforeach
+            @if ($post->count())
+            <div class="card mb-5">
+                <img height="200px" width="200px" src="{{ asset('assets/img/default.jpg') }}" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                  <h3 class="card-title">{{ $post[0]->title }}</h3>
+                  <small class="text-body-secondary">By : <a href="/authors/{{ $post[0]->user->username }}" class="text-decoration-none">{{ $post[0]->user->name }}</a> | Category : <a class="text-decoration-none" href="/categories/{{ $post[0]->category->slug }}">{{ $post[0]->category->name }}</a> | {{ $post[0]->created_at->diffForHumans() }}</small>
+                  <p class="card-text">{{ $post[0]->excerpt }}</p>
+                  <a href="/post/{{ $post[0]->slug }}" class="text-decoration-none btn btn-primary">Read More....</a>
+                </div>
+            </div>
+            
+            <div class="container">
+                <div class="row">
+                    @foreach ($post->skip(1) as $p)
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="position-absolute text-white px-3 py-2 " style="background-color: rgba(0, 0, 0, 0.7)"><a class="text-white text-decoration-none" href="/categories/{{ $p->category->slug }}">{{ $p->category->name }}</a></div>
+                            <img src="{{ asset('assets/img/default.jpg') }}" class="card-img-top" alt="default">
+                            <div class="card-body">
+                              <h5 class="card-title">{{ $p->title }}</h5>
+                              <small class="text-body-secondary">By : <a href="/authors/{{ $p->user->username }}" class="text-decoration-none">{{ $p->user->name }}</a> | {{ $p->created_at->diffForHumans() }}</small>
+                              <p class="card-text">{{ $p->excerpt }}</p>
+                              <a href="/post/{{ $p->slug }}" class="btn btn-primary">Read more</a>
+                            </div>
+                          </div>
+                        </div>
+                        @endforeach
+                    </div>
+            </div>
+
+            @else
+            <p class="text-center fs-4">Not found post.</p>
+            @endif
+
+            <div class="d-flex justify-content-center mt-5">
+                {{ $post->links() }}
+            </div>
 
         </div>
     </div>

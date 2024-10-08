@@ -8,7 +8,7 @@
         <div class="col-md-6">
             <h2 class="mb-3 text-center p-3 rounded-3 border bg-danger-subtle border-danger" >Judul : "{{ $post->title }}"</h2>
             <article>
-            <h6>By : Futuh Iqram Multazam in Category : <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a></h6>
+            <h6>By : {{ $post->user->name }} in Category : <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a></h6>
             {{ $post->body }}
             </article>
         </div>

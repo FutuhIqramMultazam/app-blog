@@ -15,8 +15,14 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
-        $post = Post::with(['category', 'user'])->latest()->get();
+
+        $posts = Post::latest();
+
+        if (request('search')) {
+            $posts->where('title', 'like', '%' . request('search') . '%');
+        }
+
+        $post = $posts->paginate(7);
         return view('posts', compact('post'));
     }
 
