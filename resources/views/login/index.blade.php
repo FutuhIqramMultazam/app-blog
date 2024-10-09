@@ -13,22 +13,31 @@
         </div>
         @endif
 
+        @if (session('loginError'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong> {{ session('loginError') }}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+
     <h2 class="text-center mb-4">Login Page</h2>
 
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form>
-
+            <form action="/login" method="POST">
+                @csrf
                 <!-- Email -->
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Masukkan email">
+                    <input required type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="Masukkan email" value="{{ old('email') }}">
+                    @error('email') <div class="invalid-feedback">{{ $message  }}</div> @enderror
                 </div>
         
                 <!-- Password -->
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Masukkan password">
+                    <input required type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="Masukkan password">
+                    @error('password') <div class="invalid-feedback">{{ $message  }}</div> @enderror
                 </div>
         
                 <!-- Tombol Submit -->
