@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\RegisterController;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -48,3 +50,10 @@ Route::get('/categories/{category:slug}', function (Category $category) {
 Route::get('/authors/{user:username}', function (User $user) {
     return view('authors', compact('user'));
 });
+
+// login
+Route::get('/login', [LoginController::class, 'index']);
+
+// registration
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);

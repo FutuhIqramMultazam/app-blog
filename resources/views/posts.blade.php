@@ -10,7 +10,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-6">
                 <div class="input-group mb-3">
-                        <input type="text" name="search" class="form-control" placeholder="Search...">
+                        <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ request('search') }}">
                         <button class="btn btn-danger" type="button" id="button-addon2">Search</button>
                     </div>
                 </div>

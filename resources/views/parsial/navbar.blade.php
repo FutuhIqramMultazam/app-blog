@@ -10,6 +10,8 @@
           <a class="nav-link" href="/about">About</a>
           <a class="nav-link" href="/posts">Blog</a>
           <a class="nav-link" href="/categories">Categories</a>
+          <p class="nav-link"> | </p>
+          <a class="nav-link" href="/login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
         </div>
       </div>
     </div>
