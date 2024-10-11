@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str; // Tambahkan ini di atas
 
 class DashboardPostController extends Controller
 {
@@ -25,7 +27,8 @@ class DashboardPostController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('dashboard.posts.create', compact('categories'));
     }
 
     /**
@@ -36,7 +39,23 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'title' => 'required',
+            'category' => 'required',
+            'body' => 'required',
+        ]);
+
+        $slug = Str::slug($request->title); // Menggunakan Str::slug untuk hasil lebih aman
+        $hasil = [
+            'title' => $request->title,
+            'slug' => $slug,
+            'category' => $request->category,
+            'body' => $request->body,
+        ];
+
+        return $hasil;
+        // return redirect()->with('status', 'Create New Post Success!');
     }
 
     /**

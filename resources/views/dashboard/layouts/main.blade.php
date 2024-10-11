@@ -6,7 +6,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}">
-   
+
+    {{-- trix editor --}}
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
+    
     @include('dashboard.layouts.style')
     
     <!-- Custom styles for this template -->
