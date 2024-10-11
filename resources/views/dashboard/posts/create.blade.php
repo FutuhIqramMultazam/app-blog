@@ -15,7 +15,7 @@
 
           <div class="mb-3">
             <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="Breaking news...." value="{{ old('title') }}">
+            <input required type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="Breaking news...." value="{{ old('title') }}">
             @error('title') <div class="invalid-feedback">{{ $message  }}</div> @enderror
           </div>
 
@@ -32,27 +32,24 @@
 
           <div class="mb-3">
             <label for="category" class="form-label">Category</label>
-            <select id="category" class="form-select @error('category') is-invalid @enderror" name="category" aria-label="Default select example">
+            <select required id="category" class="form-select @error('category_id') is-invalid @enderror" name="category_id" >
                 <option disabled selected>-- Choose Categories --</option>
                 @foreach ($categories as $category)
-                <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                 @endforeach
             </select>
-            @error('category') 
-                <div class="invalid-feedback">{{ $message }}</div> 
-            @enderror
+            @error('category_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
         </div>
         
 
           <div class="mb-3">
             <label for="body" class="form-label">Body</label>
+            @error('body') <p class="text-danger text-center">{{ $message }}</p>  @enderror
             <div class="bg-light p-3 rounded-3 text-dark">
-                <input id="body" type="hidden" name="body" value="{{ old('body') }}">
+                <input required id="body" type="hidden" name="body" value="{{ old('body') }}">
                 <trix-editor input="body"></trix-editor>
             </div>
         </div>
-
-        @error('body') <p class="text-danger">{{ $message  }}</p> @enderror
 
         
           <div class="d-flex justify-content-between mt-5">

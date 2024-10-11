@@ -23,16 +23,19 @@
 
         <ul class="nav flex-column mb-auto">
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="#">
+            <a  class="nav-link d-flex align-items-center gap-2" href="#">
               <i class="fa-solid fa-gear"></i>
               Settings
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="#">
+            <form id="logout-form" action="/logout" method="post">
+              @csrf
+            <button type="button" id="logout-button" class="logout-button nav-link d-flex align-items-center gap-2" href="#">
               <i class="fa-solid fa-arrow-right-from-bracket"></i>
               Sign out
-            </a>
+            </button>
+          </form>
           </li>
         </ul>
       </div>

@@ -21,9 +21,9 @@
               <li><a class="dropdown-item" href="/dashboard"><i class="fa-solid fa-gauge-high"></i> My Dashboard</a></li>
               <li><hr class="dropdown-divider"></li>
               <li>
-                <form action="/logout" method="post">
+                <form id="logout-form" action="/logout" method="post">
                   @csrf
-                  <button type="submit" class="dropdown-item"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
+                  <button type="submit" class="logout-button dropdown-item"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
                 </form>
             </ul>
           </li>

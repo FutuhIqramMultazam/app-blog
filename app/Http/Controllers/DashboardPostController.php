@@ -27,7 +27,7 @@ class DashboardPostController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::all(); // ini fungsi nya buat input select
         return view('dashboard.posts.create', compact('categories'));
     }
 
@@ -41,21 +41,28 @@ class DashboardPostController extends Controller
     {
 
         $request->validate([
-            'title' => 'required',
-            'category' => 'required',
+            'title' => 'required|max:255',
+            'category_id' => 'required',
             'body' => 'required',
         ]);
 
         $slug = Str::slug($request->title); // Menggunakan Str::slug untuk hasil lebih aman
+        $excerpt = Str::limit(strip_tags($request->body), 40); // Buat excerpt otomatis dari body (ambil 40 karakter pertama)
+
         $hasil = [
             'title' => $request->title,
             'slug' => $slug,
-            'category' => $request->category,
+            'user_id' => auth()->user()->id,
+            'category_id' => $request->category_id,
+            'excerpt' => $excerpt,
             'body' => $request->body,
+            // 'published_at' => now(),
         ];
 
-        return $hasil;
-        // return redirect()->with('status', 'Create New Post Success!');
+        // Insert data ke database
+        Post::create($hasil);
+
+        return redirect('/dashboard/posts')->with('status', "Post created successfully!");
     }
 
     /**
@@ -101,6 +108,7 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        Post::destroy($post->id);
+        return redirect('/dashboard/posts')->with('status', "Post deleted successfully!");
     }
 }

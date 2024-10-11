@@ -11,9 +11,9 @@
         <li><a class="dropdown-item" href="/"><i class="fa-solid fa-globe"></i> Back to Public </a></li>
         <li><hr class="dropdown-divider"></li>
         <li>
-          <form action="/logout" method="post">
+          <form id="logout-form" action="/logout" method="post">
             @csrf
-            <button type="submit" class="dropdown-item"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
+            <button type="submit" class="logout-button dropdown-item"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
           </form>
       </ul>
     </span>
