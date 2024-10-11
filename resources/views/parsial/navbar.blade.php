@@ -7,10 +7,10 @@
       <div class="me-4">
       <div class="collapse navbar-collapse justify-content-end me-5" id="navbarNavAltMarkup">
         <div class="navbar-nav ">
-          <a class="nav-link" href="/">Home</a>
-          <a class="nav-link" href="/about">About</a>
-          <a class="nav-link" href="/posts">Blog</a>
-          <a class="nav-link" href="/categories">Categories</a>
+          <a class="nav-link {{ Request::is('/') ? 'text-info' : '' }}" href="/">Home</a>
+          <a class="nav-link {{ Request::is('about') ? 'text-info' : '' }}" href="/about">About</a>
+          <a class="nav-link {{ Request::is('posts') ? 'text-info' : '' }}" href="/posts">Blog</a>
+          <a class="nav-link {{ Request::is('categories') ? 'text-info' : '' }}" href="/categories">Categories</a>
           <p class="nav-link"> | </p>
           @auth
           <li class="nav-item dropdown">
