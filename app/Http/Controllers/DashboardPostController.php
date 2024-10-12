@@ -113,7 +113,7 @@ class DashboardPostController extends Controller
     {
         $request->validate([
             'category_id' => 'required',
-            'image' => 'image|file|max:1024',
+            'image' => 'image|file|max:1024|nullable',
             'body' => 'required',
             // Validasi slug dengan pengecualian post yang sedang di-update
             'title' => ['required', 'max:255', 'unique:posts,title,' . $post->id],
@@ -126,8 +126,8 @@ class DashboardPostController extends Controller
         $excerpt = Str::limit(strip_tags($request->body), 40); // Buat excerpt otomatis dari body (ambil 40 karakter pertama)
 
         if ($request->file('image')) {
-            if ($request->oldImage) {
-                Storage::delete($request->oldImage);
+            if ($post->image) {
+                Storage::delete($post->image);
             }
             $image = $request->file('image')->store('post-images');
         } else {
