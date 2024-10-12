@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str; // Tambahkan ini di atas
 
 class DashboardPostController extends Controller
@@ -56,6 +57,8 @@ class DashboardPostController extends Controller
 
         if ($request->file('image')) {
             $image = $request->file('image')->store('post-images');
+        } else {
+            $image = null;
         }
 
         $hasil = [
@@ -109,19 +112,34 @@ class DashboardPostController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'title' => 'required|max:255|unique:posts',
             'category_id' => 'required',
+            'image' => 'image|file|max:1024',
             'body' => 'required',
+            // Validasi slug dengan pengecualian post yang sedang di-update
+            'title' => ['required', 'max:255', 'unique:posts,title,' . $post->id],
+        ], [
+            'title.unique' => 'eh judul ini udah ada yang pake',
         ]);
+
 
         $slug = Str::slug($request->title); // Menggunakan Str::slug untuk hasil lebih aman
         $excerpt = Str::limit(strip_tags($request->body), 40); // Buat excerpt otomatis dari body (ambil 40 karakter pertama)
+
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $image = $request->file('image')->store('post-images');
+        } else {
+            $image = $post->image;
+        }
 
         $hasil = [
             'title' => $request->title,
             'slug' => $slug,
             'user_id' => auth()->user()->id,
             'category_id' => $request->category_id,
+            'image' => $image,
             'excerpt' => $excerpt,
             'body' => $request->body,
             // 'published_at' => now(),
@@ -141,6 +159,9 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if ($post->image) {
+            Storage::delete($post->image);
+        }
         Post::destroy($post->id);
         return redirect('/dashboard/posts')->with('status', "Post deleted successfully!");
     }
