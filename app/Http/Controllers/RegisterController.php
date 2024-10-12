@@ -27,6 +27,6 @@ class RegisterController extends Controller
 
         User::create($validationSuccess);
 
-        return redirect('/login')->with('status', 'Success create new account');
+        return redirect('/login')->with('status', 'The new account is ready, please log in');
     }
 }

@@ -28,7 +28,7 @@
    
     @include('dashboard.layouts.sidebar')
 
-    <main style="height: 800px" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <main style="height: 600px" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
       @yield('content')
 
@@ -37,10 +37,10 @@
   </div>
 </div>
 
-@include('alertLogout')
+@include('alerts')
 
 <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="{{ asset('assets/js/dashboard.js') }}"></script>
 
 </body>

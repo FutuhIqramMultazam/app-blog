@@ -20,6 +20,9 @@
       icon: 'success',
       title: 'Success!',
       text: "{{ session('status') }}",
+      iconColor:'green',
+      timer: 1200,
+      showConfirmButton: false,
   });
 </script>
   @endif 

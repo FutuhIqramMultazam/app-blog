@@ -22,7 +22,7 @@
 
             @if ($post->count())
             <div class="card mb-5">
-                <img height="200px" width="200px" src="{{ asset('assets/img/default.jpg') }}" class="card-img-top" alt="...">
+                <img  src="https://unsplash.it/1200/400/?{{ $post[0]->category->name }}" class="card-img-top" alt="...">
                 <div class="card-body text-center">
                   <h3 class="card-title">{{ $post[0]->title }}</h3>
                   <small class="text-body-secondary">By : <a href="/authors/{{ $post[0]->user->username }}" class="text-decoration-none">{{ $post[0]->user->name }}</a> | Category : <a class="text-decoration-none" href="/categories/{{ $post[0]->category->slug }}">{{ $post[0]->category->name }}</a> | {{ $post[0]->created_at->diffForHumans() }}</small>
@@ -37,7 +37,7 @@
                     <div class="col-md-4 mb-3">
                         <div class="card">
                             <div class="position-absolute text-white px-3 py-2 " style="background-color: rgba(0, 0, 0, 0.7)"><a class="text-white text-decoration-none" href="/categories/{{ $p->category->slug }}">{{ $p->category->name }}</a></div>
-                            <img src="{{ asset('assets/img/default.jpg') }}" class="card-img-top" alt="default">
+                            <img src="https://unsplash.it/400/200/?{{ $p->category->slug }}" class="card-img-top" alt="default">
                             <div class="card-body">
                               <h5 class="card-title">{{ $p->title }}</h5>
                               <small class="text-body-secondary">By : <a href="/authors/{{ $p->user->username }}" class="text-decoration-none">{{ $p->user->name }}</a> | {{ $p->created_at->diffForHumans() }}</small>

@@ -11,6 +11,16 @@
           <strong> {{ session('status') }}</strong>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: "{{ session('status') }}",
+                iconColor:'green',
+                timer: 1500,
+                showConfirmButton: false,
+            });
+          </script>
         @endif
 
         @if (session('loginError'))
