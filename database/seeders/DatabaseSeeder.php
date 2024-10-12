@@ -18,18 +18,21 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::factory(3)->create();
-        Post::factory(10)->create();
+        Post::factory(20)->create();
 
-        /* User::create([
-            'name' => "Futuh Iqram Multazam",
-            'email' => "Futuhiqram@gmail.com",
+        User::create([
+            'name' => "Prof.H. Futuh Iqram Multazam S.Kom,M.kom",
+            'username' => 'futuh_iqram',
+            'email' => "futuhiqram@gmail.com",
             'password' => bcrypt('icamganteng'),
         ]);
         User::create([
-            'name' => "Fadilah Fatwa",
+            'name' => "Fadilah Fatwa S.Pd, M.Pd",
+            'username' => 'fdlhftw_',
             'email' => "fadilah@gmail.com",
-            'password' => bcrypt('fadilahcantik'),
-        ]); */
+            'password' => bcrypt('akucantik'),
+        ]);
+
 
         Category::create([
             'name' => 'Programming',

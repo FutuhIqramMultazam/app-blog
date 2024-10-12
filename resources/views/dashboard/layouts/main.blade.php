@@ -28,7 +28,7 @@
    
     @include('dashboard.layouts.sidebar')
 
-    <main style="height: 600px" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <main style="height: 900px" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
       @yield('content')
 

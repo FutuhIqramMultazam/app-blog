@@ -8,7 +8,7 @@
         {{ auth()->user()->name  }}
       </a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="/"><i class="fa-solid fa-globe"></i> Back to Public </a></li>
+        <li><a class="dropdown-item" href="/posts"><i class="fa-solid fa-globe"></i> Back to Public </a></li>
         <li><hr class="dropdown-divider"></li>
         <li>
           <form id="logout-form" action="/logout" method="post">

@@ -39,21 +39,31 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'title' => 'required|max:255|unique:posts',
             'category_id' => 'required',
+            'image' => 'image|file|max:1024',
             'body' => 'required',
-        ]);
+        ], [
+            'title.required' => 'Title harus di isi lah bos.',
+            'category_id.required' => 'Pilih aja yang ada di select apa susah nya.',
+            'body.required' => 'isi aja kali walaupun satu kata bos.',
+            'title.unique' => 'eh judul ini udah ada yang pake',
+        ]); // contoh penggunaan Customizing The Error Messages
 
         $slug = Str::slug($request->title); // Menggunakan Str::slug untuk hasil lebih aman
         $excerpt = Str::limit(strip_tags($request->body), 40); // Buat excerpt otomatis dari body (ambil 40 karakter pertama)
+
+        if ($request->file('image')) {
+            $image = $request->file('image')->store('post-images');
+        }
 
         $hasil = [
             'title' => $request->title,
             'slug' => $slug,
             'user_id' => auth()->user()->id,
             'category_id' => $request->category_id,
+            'image' => $image,
             'excerpt' => $excerpt,
             'body' => $request->body,
             // 'published_at' => now(),
