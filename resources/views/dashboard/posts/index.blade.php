@@ -48,7 +48,7 @@
           <td>{{ $post->category->name }}</td>
           <td>
             <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-info text-dark"><i class="fa-solid fa-eye"></i></a>
-            <a href="" class="badge bg-warning text-dark"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a href="/dashboard/posts/{{ $post->slug }}/edit" class="badge bg-warning text-dark mx-2"><i class="fa-solid fa-pen-to-square"></i></a>
 
             <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline" id="delete-form-{{ $post->slug }}">
               @method('delete')

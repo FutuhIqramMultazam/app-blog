@@ -41,7 +41,7 @@ class DashboardPostController extends Controller
     {
 
         $request->validate([
-            'title' => 'required|max:255',
+            'title' => 'required|max:255|unique:posts',
             'category_id' => 'required',
             'body' => 'required',
         ]);
@@ -85,7 +85,8 @@ class DashboardPostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $categories = Category::all();
+        return view('dashboard.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -97,7 +98,29 @@ class DashboardPostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255|unique:posts',
+            'category_id' => 'required',
+            'body' => 'required',
+        ]);
+
+        $slug = Str::slug($request->title); // Menggunakan Str::slug untuk hasil lebih aman
+        $excerpt = Str::limit(strip_tags($request->body), 40); // Buat excerpt otomatis dari body (ambil 40 karakter pertama)
+
+        $hasil = [
+            'title' => $request->title,
+            'slug' => $slug,
+            'user_id' => auth()->user()->id,
+            'category_id' => $request->category_id,
+            'excerpt' => $excerpt,
+            'body' => $request->body,
+            // 'published_at' => now(),
+        ];
+
+        // Insert data ke database
+        Post::where('id', $post->id)->update($hasil);
+
+        return redirect('/dashboard/posts')->with('status', "Post updated successfully!");
     }
 
     /**

@@ -15,7 +15,7 @@
     </div>
 </div>
 <a href="/dashboard/posts" class="btn btn-sm btn-secondary"><i class="fa-solid fa-arrow-left"></i> back to my posts</a>
-<a href="/dashboard/posts" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i> edit</a>
+<a href="/dashboard/posts/{{ $post->slug }}/edit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i> edit</a>
 
 <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline" id="delete-form-{{ $post->slug }}">
     @method('delete')
