@@ -123,7 +123,15 @@ class DashboardPostController extends Controller
 
 
         $slug = Str::slug($request->title); // Menggunakan Str::slug untuk hasil lebih aman
-        $excerpt = Str::limit(strip_tags($request->body), 40); // Buat excerpt otomatis dari body (ambil 40 karakter pertama)
+        $excerpt = Str::limit(strip_tags($request->body,), 40, '....'); // Buat excerpt otomatis dari body (ambil 40 karakter pertama)
+
+        // Check if the user wants to delete the existing image
+        if ($request->has('delete_image')) {
+            if ($post->image) {
+                Storage::delete($post->image); // Delete the image from storage
+                $post->image = null; // Set image field to null in the database
+            }
+        }
 
         if ($request->file('image')) {
             if ($post->image) {

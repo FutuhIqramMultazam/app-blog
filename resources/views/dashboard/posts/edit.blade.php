@@ -35,6 +35,8 @@
           <label for="image" class="form-label">Post Image</label>
           @if ($post->image)
           <img src="{{ asset("storage/".$post->image) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+          <input type="checkbox" name="delete_image" id="delete_image">
+          <label class="mb-2" for="delete_image">Mau hapus gambar yang di atas ini ?</label>
           @else
           <img class="img-preview img-fluid mb-3 col-sm-5">
           @endif
@@ -52,7 +54,7 @@
         </div>
 
         
-          <div class="d-flex justify-content-between mt-5">
+          <div class="d-flex justify-content-between mt-5 mb-5">
               <a href="/dashboard/posts" class="btn btn-danger"><i class="fa-solid fa-arrow-left"></i> back</a>
               <button type="submit" class="btn btn-success"><i class="fa-solid fa-paper-plane"></i> Submit</button>
             </div>
