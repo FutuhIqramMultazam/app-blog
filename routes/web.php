@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostsController;
@@ -69,3 +70,6 @@ Route::get('/dashboard', function () {
 // dashboard post controller
 Route::resource('/dashboard/posts', DashboardPostController::class)
     ->middleware('auth');
+
+// admin category controller
+Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
