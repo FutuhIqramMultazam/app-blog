@@ -98,6 +98,10 @@ class DashboardPostController extends Controller
      */
     public function edit(Post $post)
     {
+        // Cek apakah user yang login adalah pemilik post
+        if ($post->user_id !== auth()->id()) {
+            abort(403, 'bade ka mana atuh bageur, bade ngedit postingan anu batur?');
+        }
         $categories = Category::all();
         return view('dashboard.posts.edit', compact('post', 'categories'));
     }
@@ -111,6 +115,12 @@ class DashboardPostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+
+        // Cek apakah user yang login adalah pemilik post
+        if ($post->user_id !== auth()->id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
         $request->validate([
             'category_id' => 'required',
             'image' => 'image|file|max:1024|nullable',

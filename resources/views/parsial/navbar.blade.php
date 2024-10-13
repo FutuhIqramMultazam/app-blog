@@ -28,7 +28,7 @@
             </ul>
           </li>
           @else
-          <a class="nav-link" href="/login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+          <a class="nav-link {{ Request::is('login') ? 'text-info' : '' }}" href="/login"><i class="fa-solid fa-right-to-bracket {{ Request::is('login') ? 'text-info' : '' }}"></i> Login</a>
           @endauth
         </div>
       </div>
