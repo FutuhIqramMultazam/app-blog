@@ -28,6 +28,15 @@
           <strong> {{ session('loginError') }}</strong>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Erorr!',
+                text: "{{ session('loginError') }}",
+                iconColor:'red',
+                confirmButtonColor: '#d33'
+            });
+          </script>
         @endif
 
     <h2 class="text-center mb-4">Login Page</h2>
